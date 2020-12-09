@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit profile</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full">
+
+    <ion-item>
+      <ion-label><b>Name: </b></ion-label>
+      <ion-input
+        [(ngModel)]="user.name"
+        type="text"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><b>Birthday: </b></ion-label>
+      <ion-datetime 
+        display-format="YYYY-MM-DD"
+        [(ngModel)]="user.birthday"
+      ></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><b>Photo: </b></ion-label>
+      <ion-input
+        [(ngModel)]="user.photo"
+        type="text"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-button (click)="updateUser()">
+        <ion-icon slot="start" name="save"></ion-icon></ion-button>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

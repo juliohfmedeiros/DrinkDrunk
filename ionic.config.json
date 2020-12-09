@@ -1,5 +1,7 @@
 {
   "name": "DrinkDrunk",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
