@@ -13,27 +13,33 @@
   <ion-list lines="full">
 
     <ion-item>
-      <ion-label><b>Name: </b></ion-label>
-      <ion-input
-        [(ngModel)]="user.name"
-        type="text"
-      ></ion-input>
+      <ion-label>
+        <ion-img 
+          *ngIf="picture"
+          [(ngModel)]="user.photo">
+        </ion-img>
+        <ion-button (click)="takePicture()">
+          <ion-icon slot="start" name="camera"></ion-icon>
+        </ion-button>
+      </ion-label>
     </ion-item>
 
     <ion-item>
-      <ion-label><b>Birthday: </b></ion-label>
-      <ion-datetime 
-        display-format="YYYY-MM-DD"
-        [(ngModel)]="user.birthday"
-      ></ion-datetime>
+      <ion-label>
+        <ion-input
+          [(ngModel)]="user.name"
+          type="text"
+        ></ion-input>
+      </ion-label>
     </ion-item>
 
     <ion-item>
-      <ion-label><b>Photo: </b></ion-label>
-      <ion-input
-        [(ngModel)]="user.photo"
-        type="text"
-      ></ion-input>
+      <ion-label>
+        <ion-datetime 
+          display-format="YYYY-MM-DD"
+          [(ngModel)]="user.birthday"
+        ></ion-datetime>
+      </ion-label>
     </ion-item>
 
     <ion-item>

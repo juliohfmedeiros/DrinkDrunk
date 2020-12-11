@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../models/user.model';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,23 @@ export class CocktailsService {
   private user: User = new User('José Pequeno', new Date(2000,0,1), 'algures');
   private readonly localstorageUserKey = 'user';
 
+  private cameraOptions: CameraOptions;
+
   public userSubject: BehaviorSubject<User>;
 
-  constructor() {
+  constructor(private cameraPlugin: Camera) {
     this.user =
     localStorage.getItem(this.localstorageUserKey) === null
     ? this.user 
     : JSON.parse(localStorage.getItem(this.localstorageUserKey));
     this.userSubject = new BehaviorSubject<User>(this.user);
+
+    this.cameraOptions = {
+      quality: 100,
+      destinationType: this.cameraPlugin.DestinationType.DATA_URL,
+      encodingType: this.cameraPlugin.EncodingType.JPEG,
+      mediaType: this.cameraPlugin.MediaType.PICTURE,
+    };
   }
 
   private streamUpdatedUser(): void {
@@ -33,5 +43,9 @@ export class CocktailsService {
     this.user = editedUser;
     this.streamUpdatedUser();
     this.saveUser();
+  }
+
+  takePicture(): Promise<any> {
+    return this.cameraPlugin.getPicture(this.cameraOptions);
   }
 }
