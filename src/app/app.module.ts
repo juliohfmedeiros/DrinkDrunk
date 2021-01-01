@@ -8,12 +8,15 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { Camera } from '@ionic-native/camera/ngx';
+import { DateFormatPipe } from './pipes/date-format.pipe';
+
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DateFormatPipe],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
     StatusBar,
     SplashScreen,

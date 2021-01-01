@@ -8,7 +8,15 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-button (click)="openEditProfile()" shape="round">
+  <ion-button (click)="openEditProfile()">
   </ion-button>
+
+  <ng-template #cocktailsBlock>
+    <ion-list lines="full">
+      <ion-item *ngFor="let cocktail of cocktails.drinks; index as i">
+        <ion-label>{{ cocktail.text }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-template>
 
 </ion-content>

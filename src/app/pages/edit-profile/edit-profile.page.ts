@@ -3,7 +3,7 @@ import { NavController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AlertController } from '@ionic/angular';
-import { CocktailsService } from 'src/app/services/cocktails.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,21 +15,21 @@ export class EditProfilePage implements OnInit, OnDestroy {
 
   public user: User;
 
-  picture: string;
-
   constructor(
-    private cocktailsService: CocktailsService,
+    private userService: UserService,
     private navController: NavController,
-    private cameraService: CocktailsService,
-    private alertController: AlertController
+    private cameraService: UserService,
+    private alertController: AlertController,
   ) {}
 
   ngOnInit(): void {
-    this.userSubscription = this.cocktailsService.userSubject.subscribe(
+    this.userSubscription = this.userService.userSubject.subscribe(
       (updatedUser) => {
         this.user = updatedUser;
       }
     );
+    
+    console.log(this.user.birthday);
   }
 
   ngOnDestroy(): void {
@@ -37,7 +37,7 @@ export class EditProfilePage implements OnInit, OnDestroy {
   }
 
   public updateUser(): void {
-    this.cocktailsService.editUser(this.user);
+    this.userService.editUser(this.user);
     this.navController.pop();
   }
 
@@ -45,7 +45,7 @@ export class EditProfilePage implements OnInit, OnDestroy {
     this.cameraService
       .takePicture()
       .then((encodedImage) => {
-        this.picture = 'data:image/jpeg;base64,' + encodedImage;
+        this.user.photo = 'data:image/jpeg;base64,' + encodedImage;
       })
       .catch(async (error) => {
         const alert = await this.alertController.create({

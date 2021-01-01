@@ -1,51 +1,22 @@
+  
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { User } from '../models/user.model';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Cocktails } from '../models/cocktails.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CocktailsService {
-  private user: User = new User('José Pequeno', new Date(2000,0,1), 'algures');
-  private readonly localstorageUserKey = 'user';
 
-  private cameraOptions: CameraOptions;
+  private baseApiUrl = 'https://www.thecocktaildb.com';
 
-  public userSubject: BehaviorSubject<User>;
 
-  constructor(private cameraPlugin: Camera) {
-    this.user =
-    localStorage.getItem(this.localstorageUserKey) === null
-    ? this.user 
-    : JSON.parse(localStorage.getItem(this.localstorageUserKey));
-    this.userSubject = new BehaviorSubject<User>(this.user);
-
-    this.cameraOptions = {
-      quality: 100,
-      destinationType: this.cameraPlugin.DestinationType.DATA_URL,
-      encodingType: this.cameraPlugin.EncodingType.JPEG,
-      mediaType: this.cameraPlugin.MediaType.PICTURE,
-    };
+  constructor(private httpClient: HttpClient) {
   }
 
-  private streamUpdatedUser(): void {
-    this.userSubject.next(this.user);
+  getAllCocktails(): Observable<Cocktails> {
+    return this.httpClient.get<Cocktails>(this.baseApiUrl + '/api/json/v1/1/search.php?s=margarita');
   }
 
-  private saveUser(): void {
-    localStorage.setItem(
-      this.localstorageUserKey, JSON.stringify(this.user)
-    );
-  }
-
-  public editUser(editedUser: User): void {
-    this.user = editedUser;
-    this.streamUpdatedUser();
-    this.saveUser();
-  }
-
-  takePicture(): Promise<any> {
-    return this.cameraPlugin.getPicture(this.cameraOptions);
-  }
 }

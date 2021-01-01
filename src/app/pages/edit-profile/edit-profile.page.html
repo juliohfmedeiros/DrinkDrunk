@@ -15,8 +15,8 @@
     <ion-item>
       <ion-label>
         <ion-img 
-          *ngIf="picture"
-          [(ngModel)]="user.photo">
+          *ngIf="user.photo"
+          [src]="user.photo">
         </ion-img>
         <ion-button (click)="takePicture()">
           <ion-icon slot="start" name="camera"></ion-icon>
