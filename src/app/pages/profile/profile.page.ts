@@ -4,18 +4,20 @@ import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AlertController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './edit-profile.page.html',
-  styleUrls: ['./edit-profile.page.scss'],
+  templateUrl: './profile.page.html',
+  styleUrls: ['./profile.page.scss'],
 })
-export class EditProfilePage implements OnInit, OnDestroy {
+export class ProfilePage implements OnInit, OnDestroy {
   private userSubscription: Subscription;
 
   public user: User;
 
   constructor(
+    private router: Router,
     private userService: UserService,
     private navController: NavController,
     private cameraService: UserService,
@@ -34,23 +36,8 @@ export class EditProfilePage implements OnInit, OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
-  public updateUser(): void {
-    this.userService.editUser(this.user);
-    this.navController.pop();
+  openEditProfile(): void {
+    this.router.navigateByUrl('/edit-profile');
   }
 
-  takePicture(): void {
-    this.cameraService
-      .takePicture()
-      .then((encodedImage) => {
-        this.user.photo = 'data:image/jpeg;base64,' + encodedImage;
-      })
-      .catch(async (error) => {
-        const alert = await this.alertController.create({
-          header: 'Error',
-          message: error,
-        });
-        await alert.present();
-      });
-  }
 }

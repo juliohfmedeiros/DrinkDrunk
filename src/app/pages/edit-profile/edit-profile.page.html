@@ -10,18 +10,19 @@
 </ion-header>
 
 <ion-content>
-  <ion-list lines="full">
+  <ion-list lines="none">
 
     <ion-item>
-      <ion-label>
-        <ion-img 
-          *ngIf="user.photo"
-          [src]="user.photo">
-        </ion-img>
-        <ion-button (click)="takePicture()">
-          <ion-icon slot="start" name="camera"></ion-icon>
-        </ion-button>
+      <ion-label class="drinkLabel">
+        <ion-thumbnail>        
+          <ion-img 
+            [src]="user.photo">
+          </ion-img>
+        </ion-thumbnail>
       </ion-label>
+      <ion-button (click)="takePicture()">
+        <ion-icon slot="start" name="camera"></ion-icon>
+      </ion-button>
     </ion-item>
 
     <ion-item>
@@ -44,7 +45,8 @@
 
     <ion-item>
       <ion-button (click)="updateUser()">
-        <ion-icon slot="start" name="save"></ion-icon></ion-button>
+        <ion-icon slot="start" name="save"></ion-icon>
+      </ion-button>
     </ion-item>
 
   </ion-list>

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Cocktails } from 'src/app/models/cocktails.model';
+import { Cocktail } from 'src/app/models/cocktail.model';
 import { User } from 'src/app/models/user.model';
 import { CocktailsService } from 'src/app/services/cocktails.service';
 import { UserService } from 'src/app/services/user.service';
@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 export class HomePage implements OnInit, OnDestroy {
 
   public user: User;
-  public cocktails: Cocktails;
+  public cocktails: Cocktail[];
 
   private userSubscription: Subscription;
   private cocktailsSubscription: Subscription;
@@ -33,7 +33,7 @@ export class HomePage implements OnInit, OnDestroy {
     );
     this.cocktailsSubscription = this.cocktailsService.getAllCocktails().subscribe(
       (apiData) => {
-        this.cocktails = apiData;
+        this.cocktails = apiData.drinks;
         console.log(this.cocktails);
       }
     );
@@ -44,8 +44,8 @@ export class HomePage implements OnInit, OnDestroy {
     this.cocktailsSubscription.unsubscribe();
   }
   
-  openEditProfile(): void {
-    this.router.navigateByUrl('/edit-profile');
+  openProfile(): void {
+    this.router.navigateByUrl('/profile');
   }
 
 }

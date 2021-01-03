@@ -17,7 +17,7 @@ export class UserService {
   constructor(private cameraPlugin: Camera) {
     this.user =
     localStorage.getItem(this.localstorageUserKey) === null
-    ?  new User('José Pequeno', new Date(2000,0,1), '')
+    ?  new User('José Pequeno', new Date(2000,0,1), 'assets/avatar.png')
     : JSON.parse(localStorage.getItem(this.localstorageUserKey));
     this.userSubject = new BehaviorSubject<User>(this.user);
 

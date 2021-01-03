@@ -1,22 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-label class="drinkLabel">    
+      <ion-thumbnail>
+        <img  id="logo" src="assets/icon/favicon.png" />
+      </ion-thumbnail>
+    </ion-label>
 
-    <ion-title>DrinkDrunk</ion-title>
-
+    <ion-buttons slot="end">
+      <ion-label class="drinkLabel">{{ user.name }}</ion-label>
+      <ion-button class="profile" (click)="openProfile()">
+          <img [src]="user.photo" />
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Search your drinks." (ionInput)="onSearch($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <ion-button (click)="openEditProfile()">
-  </ion-button>
-
-  <ng-template #cocktailsBlock>
-    <ion-list lines="full">
-      <ion-item *ngFor="let cocktail of cocktails.drinks; index as i">
-        <ion-label>{{ cocktail.text }}</ion-label>
-      </ion-item>
-    </ion-list>
-  </ng-template>
+  <ion-list lines="none">
+    <ion-item *ngFor="let cocktail of cocktails">
+      <label class="drinkLabel"><ion-thumbnail>
+        <img [src]="cocktail.strDrinkThumb" />
+      </ion-thumbnail></label>
+      <ion-label class="drinkLabel">{{ cocktail.strDrink }}</ion-label>
+      <ion-button (click)="drunkDrink()" shape="round">
+        drink
+      </ion-button>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

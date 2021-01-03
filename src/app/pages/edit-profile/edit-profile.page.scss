@@ -1,0 +1,51 @@
+.drinkLabel ion-thumbnail {
+    --border-radius: 50%;
+    --size: 256px;
+}
+
+ion-list {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+ion-button {
+    --background: #502727;
+    --border-color: #ffffff;
+    --border-radius: 8px;
+    --border-style: solid;
+    --border-width: 0.1rem;
+}
+ion-toolbar {
+    --background: #300f0f;
+    --padding-bottom: 4px;
+    --padding-end: 4px;
+    --padding-start: 4px;
+    --padding-top: 4px;
+}
+ion-item {
+    --background: #502727;
+}
+
+ion-searchbar {
+    --background: #c4afaf;
+    --color: #300f0f;
+    --icon-color: #300f0f;
+    --border-radius: 0;
+    padding: 0;
+}
+
+.drinkLabel {
+    display: flex;
+    margin: 6px;
+}
+.drinkLabel #logo {
+    border-radius: 50%;
+}
+#profile {
+    width: 60px;
+    height: 60px;
+    --border-width: 0;
+}
+
+#profile img {
+    border-radius: 50%;
+}

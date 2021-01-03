@@ -4,11 +4,7 @@ ion-list {
     padding-bottom: 0;
 }
 ion-button {
-    --background: #502727;
-    --border-color: #ffffff;
-    --border-radius: 8px;
-    --border-style: solid;
-    --border-width: 0.1rem;
+    --background: #300f0f;
 }
 ion-toolbar {
     --background: #300f0f;
@@ -21,14 +17,6 @@ ion-item {
     --background: #502727;
     border-bottom: 0.1rem solid #ffffff ;
 }
-
-ion-searchbar {
-    --background: #c4afaf;
-    --color: #300f0f;
-    --icon-color: #300f0f;
-    --border-radius: 0;
-}
-
 .drinkLabel {
     display: flex;
     margin: 6px;
@@ -39,7 +27,6 @@ ion-searchbar {
 .profile {
     width: 60px;
     height: 60px;
-    --border-width: 0;
 }
 
 .profile img {

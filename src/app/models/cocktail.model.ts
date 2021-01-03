@@ -1,6 +1,9 @@
   
 export class Cocktail {
-    text: string;
+    strDrink: string;
+    strDrinkThumb: string;
+    date: Date;
+    local: string;
 
     constructor() {
     }
