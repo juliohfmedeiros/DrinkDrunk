@@ -20,7 +20,7 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-list lines="none">
+  <ion-list *ngIf="cocktails.length > 0"lines="none">
     <ion-item *ngFor="let cocktail of cocktails">
       <label class="drinkLabel"><ion-thumbnail>
         <img [src]="cocktail.strDrinkThumb" />
@@ -31,5 +31,5 @@
       </ion-button>
     </ion-item>
   </ion-list>
-
+  <p class="ion-padding" *ngIf="cocktails.length === 0">No cocktails.</p>
 </ion-content>

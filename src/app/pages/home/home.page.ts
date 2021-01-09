@@ -34,7 +34,6 @@ export class HomePage implements OnInit, OnDestroy {
     this.cocktailsSubscription = this.cocktailsService.getAllCocktails().subscribe(
       (apiData) => {
         this.cocktails = apiData.drinks;
-        console.log(this.cocktails);
       }
     );
   }
@@ -48,4 +47,12 @@ export class HomePage implements OnInit, OnDestroy {
     this.router.navigateByUrl('/profile');
   }
 
+  drunkDrink() {
+
+  }
+
+  onSearch(event): void {
+    const searchValue = event.target.value;
+    this.cocktails = this.cocktailsService.search(searchValue);
+  }
 }
