@@ -16,6 +16,8 @@ export class HomePage implements OnInit, OnDestroy {
   public user: User;
   public cocktails: Cocktail[];
 
+
+
   private userSubscription: Subscription;
   private cocktailsSubscription: Subscription;
 
@@ -47,12 +49,13 @@ export class HomePage implements OnInit, OnDestroy {
     this.router.navigateByUrl('/profile');
   }
 
-  drunkDrink() {
-
-  }
-
   onSearch(event): void {
     const searchValue = event.target.value;
+    console.log(searchValue);
     this.cocktails = this.cocktailsService.search(searchValue);
+  }
+
+  drunkDrink() {
+
   }
 }
