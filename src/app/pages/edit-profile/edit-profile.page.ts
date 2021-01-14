@@ -15,12 +15,10 @@ export class EditProfilePage implements OnInit, OnDestroy {
 
   public user: User;
 
-  constructor(
-    private userService: UserService,
+  constructor(private userService: UserService,
     private navController: NavController,
     private cameraService: UserService,
-    private alertController: AlertController,
-  ) {}
+    private alertController: AlertController) {}
 
   ngOnInit(): void {
     this.userSubscription = this.userService.userSubject.subscribe(

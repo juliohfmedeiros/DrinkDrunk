@@ -3,9 +3,6 @@ ion-list {
     padding-top: 0;
     padding-bottom: 0;
 }
-ion-button {
-    --background: #300f0f;
-}
 ion-toolbar {
     --background: #300f0f;
     --padding-bottom: 4px;
@@ -18,26 +15,7 @@ ion-item {
     border-bottom: 0.1rem solid #ffffff ;
 }
 
-ion-searchbar {
-    --background: #c4afaf;
-    --color: #300f0f;
-    --icon-color: #300f0f;
-    --border-radius: 0;
-}
-
 .drinkLabel {
     display: flex;
     margin: 6px;
-}
-.drinkLabel #logo {
-    border-radius: 50%;
-}
-.profile {
-    width: 60px;
-    height: 60px;
-    --border-width: 0;
-}
-
-.profile img {
-    border-radius: 50%;
 }

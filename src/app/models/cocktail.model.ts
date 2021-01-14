@@ -1,4 +1,3 @@
-  
 export class Cocktail {
     strDrink: string;
     strDrinkThumb: string;

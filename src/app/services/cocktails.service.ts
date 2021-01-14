@@ -10,7 +10,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class CocktailsService {
-  public allCocktails: Cocktail[];
+  public cocktails: Cocktail[];
   public drunkCocktails: Cocktail[];
 
   private readonly localStorageDrunkCocktailsKey = 'drunkCocktails';
@@ -32,16 +32,38 @@ export class CocktailsService {
     return this.httpClient.get<Cocktails>(this.baseApiUrl + '/api/json/v1/1/filter.php?a=Alcoholic');
   }
 
-  public getCocktails(): Observable<Cocktails> {
-    return this.drunkCocktails;
-  }
-
   public search(searchValue: string): Cocktail[] {
-    return [...this.allCocktails].filter((cocktail) =>
+    return [...this.cocktails].filter((cocktail) =>
     cocktail.strDrink.toLowerCase().includes(searchValue.toLowerCase())
     );
   }
 
   public addDrunkCocktail(newCocktail: Cocktail): void {
+    this.drunkCocktails.push(newCocktail);
+    this.drunkCocktailsSubject.next(this.drunkCocktails);
+    localStorage.setItem(
+      this.localStorageDrunkCocktailsKey,
+      JSON.stringify(this.drunkCocktails)
+    );
+  }
+
+  public removeCocktail(index: number): void {
+    this.drunkCocktails.splice(index, 1);
+    this.drunkCocktailsSubject.next(this.drunkCocktails);
+    localStorage.setItem(
+      this.localStorageDrunkCocktailsKey,
+      JSON.stringify(this.drunkCocktails)
+    );
+  }
+
+  public searchDrunks(searchValue: string): Cocktail[] {
+    return [...this.drunkCocktails].filter((cocktail) =>
+    cocktail.strDrink.toLowerCase().includes(searchValue.toLowerCase())
+    );
+  }
+  
+  getSortedCocktails(): Cocktail[] {
+    return [...this.drunkCocktails].sort((cocktail1, cocktail2) => cocktail1.strDrink - cocktail2.strDrink
+    );
   }
 }

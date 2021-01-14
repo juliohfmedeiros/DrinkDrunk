@@ -14,21 +14,22 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar placeholder="Search your drinks." (ionInput)="onSearch($event)"></ion-searchbar>
+    <ion-searchbar placeholder="Search drinks." (ionInput)="onSearch($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
   <ion-list lines="none">
-    <ion-item *ngFor="let cocktail of allCocktails">
-      <label class="drinkLabel"><ion-thumbnail>
+    <ion-item *ngFor="let cocktail of cocktails">
+      <ion-thumbnail>
         <img [src]="cocktail.strDrinkThumb" />
       </ion-thumbnail>
-      <ion-label class="drinkLabel">{{ cocktail.strDrink }}</ion-label>
-      <ion-button (click)="drunkDrink()" shape="round">
-        Click me
+      <ion-label class="drinkLabel">{{ cocktail.strDrink }}</ion-label> 
+      <ion-button  (click)="drunkDrink(cocktail)" shape="round">
+      to drink
       </ion-button>
     </ion-item>
   </ion-list>
+  
 </ion-content>

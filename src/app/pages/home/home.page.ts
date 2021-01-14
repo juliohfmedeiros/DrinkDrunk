@@ -14,39 +14,31 @@ import { UserService } from 'src/app/services/user.service';
 export class HomePage implements OnInit, OnDestroy {
 
   public user: User;
-  public allCocktails: Cocktail[];
-  public drunkCocktails: Cocktail[];
+  public cocktails: Cocktail[];
 
   private userSubscription: Subscription;
-  private allCocktailsSubscription: Subscription;
-  drunkCocktailsSubscription: Subscription;
+  private cocktailsSubscription: Subscription;
 
   constructor(private router: Router,
     private userService: UserService,
     private cocktailsService: CocktailsService) {}
 
-    public ngOnInit(): void {
+  public ngOnInit(): void {
     this.userSubscription = this.userService.userSubject.subscribe(
       (updatedUser) => {
-        this.user = updatedUser;
+        this.user = updatedUser
       }
     );
-    this.allCocktailsSubscription = this.cocktailsService.getAllCocktails().subscribe(
+    this.cocktailsSubscription = this.cocktailsService.getAllCocktails().subscribe(
       (apiData) => {
-        this.allCocktails = apiData.drinks
-      }
-    );
-    this.drunkCocktailsSubscription = this.cocktailsService.drunkCocktailsSubject.subscribe(
-      (myData) => {
-        this.drunkCocktails = myData;
+        this.cocktails = apiData.drinks
       }
     );
   }
 
   public ngOnDestroy() : void {
     this.userSubscription.unsubscribe();
-    this.allCocktailsSubscription.unsubscribe();
-    this.drunkCocktailsSubscription.unsubscribe();
+    this.cocktailsSubscription.unsubscribe();
   }
   
   public openProfile(): void {
@@ -55,9 +47,10 @@ export class HomePage implements OnInit, OnDestroy {
 
   public onSearch(event): void {
     const searchValue = event.target.value;
-    this.allCocktails = this.cocktailsService.search(searchValue);
+    this.cocktails = this.cocktailsService.search(searchValue);
   }
 
-  public drunkDrink() : void {
+  public drunkDrink(newDrunkCocktail: Cocktail) : void {
+    this.cocktailsService.addDrunkCocktail(newDrunkCocktail);
   }
 }

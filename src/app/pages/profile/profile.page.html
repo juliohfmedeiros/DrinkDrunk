@@ -4,17 +4,29 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
-
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="openEditProfile()">
         <ion-icon slot="start" name="settings"></ion-icon>
       </ion-button>
     </ion-buttons>
-
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Search your drinks." (ionInput)="onSearch($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list lines="none">
+    <ion-item (click)="openDrunkCocktail(i)" *ngFor="let cocktail of drunkCocktails; index as i">
+      <ion-thumbnail>
+        <img [src]="cocktail.strDrinkThumb" />
+      </ion-thumbnail>
+      <ion-label class="drinkLabel">{{ cocktail.strDrink }}</ion-label>
+      <ion-button (click)="removeCocktail(i)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button> 
+    </ion-item>
+  </ion-list>
 
 </ion-content>
