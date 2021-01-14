@@ -4,38 +4,44 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cocktails } from '../models/cocktails.model';
 import { Cocktail } from '../models/cocktail.model';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CocktailsService {
+  public allCocktails: Cocktail[];
+  public drunkCocktails: Cocktail[];
+
+  private readonly localStorageDrunkCocktailsKey = 'drunkCocktails';
+
+  public drunkCocktailsSubject: BehaviorSubject<Cocktail[]>;
+  public selectedIndex: number;
 
   private baseApiUrl = 'https://www.thecocktaildb.com';
 
-  public cocktails: Cocktail[];
-
-  cocktailsSubscription: Subscription;
-  
-  constructor(private httpClient: HttpClient) {
-    this.cocktailsSubscription = this.getAllCocktails().subscribe(
-      (apiData) => {
-        this.cocktails = apiData.drinks;
-      }
-    );
+  constructor(private httpClient: HttpClient){
+    this.drunkCocktails =
+    localStorage.getItem(this.localStorageDrunkCocktailsKey) === null
+      ? []
+      : JSON.parse(localStorage.getItem(this.localStorageDrunkCocktailsKey));
+    this.drunkCocktailsSubject = new BehaviorSubject<Cocktail[]>(this.drunkCocktails);
   }
 
-  getAllCocktails(): Observable<Cocktails> {
+  public getAllCocktails(): Observable<Cocktails> {
     return this.httpClient.get<Cocktails>(this.baseApiUrl + '/api/json/v1/1/filter.php?a=Alcoholic');
   }
 
-  search(searchValue: string): Cocktail[] {
-    return [...this.cocktails].filter((cocktail) =>
+  public getCocktails(): Observable<Cocktails> {
+    return this.drunkCocktails;
+  }
+
+  public search(searchValue: string): Cocktail[] {
+    return [...this.allCocktails].filter((cocktail) =>
     cocktail.strDrink.toLowerCase().includes(searchValue.toLowerCase())
     );
   }
 
-  drunkDrink() {
-
+  public addDrunkCocktail(newCocktail: Cocktail): void {
   }
 }

@@ -14,48 +14,50 @@ import { UserService } from 'src/app/services/user.service';
 export class HomePage implements OnInit, OnDestroy {
 
   public user: User;
-  public cocktails: Cocktail[];
-
-
+  public allCocktails: Cocktail[];
+  public drunkCocktails: Cocktail[];
 
   private userSubscription: Subscription;
-  private cocktailsSubscription: Subscription;
+  private allCocktailsSubscription: Subscription;
+  drunkCocktailsSubscription: Subscription;
 
-  constructor(
-    private router: Router,
+  constructor(private router: Router,
     private userService: UserService,
-    private cocktailsService: CocktailsService
-    ) {}
+    private cocktailsService: CocktailsService) {}
 
-  ngOnInit(): void {
+    public ngOnInit(): void {
     this.userSubscription = this.userService.userSubject.subscribe(
       (updatedUser) => {
         this.user = updatedUser;
       }
     );
-    this.cocktailsSubscription = this.cocktailsService.getAllCocktails().subscribe(
+    this.allCocktailsSubscription = this.cocktailsService.getAllCocktails().subscribe(
       (apiData) => {
-        this.cocktails = apiData.drinks;
+        this.allCocktails = apiData.drinks
+      }
+    );
+    this.drunkCocktailsSubscription = this.cocktailsService.drunkCocktailsSubject.subscribe(
+      (myData) => {
+        this.drunkCocktails = myData;
       }
     );
   }
 
-  ngOnDestroy() : void {
+  public ngOnDestroy() : void {
     this.userSubscription.unsubscribe();
-    this.cocktailsSubscription.unsubscribe();
+    this.allCocktailsSubscription.unsubscribe();
+    this.drunkCocktailsSubscription.unsubscribe();
   }
   
-  openProfile(): void {
+  public openProfile(): void {
     this.router.navigateByUrl('/profile');
   }
 
-  onSearch(event): void {
+  public onSearch(event): void {
     const searchValue = event.target.value;
-    console.log(searchValue);
-    this.cocktails = this.cocktailsService.search(searchValue);
+    this.allCocktails = this.cocktailsService.search(searchValue);
   }
 
-  drunkDrink() {
-
+  public drunkDrink() : void {
   }
 }

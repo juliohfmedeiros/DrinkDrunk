@@ -21,13 +21,13 @@
 <ion-content [fullscreen]="true">
 
   <ion-list lines="none">
-    <ion-item *ngFor="let cocktail of cocktails">
+    <ion-item *ngFor="let cocktail of allCocktails">
       <label class="drinkLabel"><ion-thumbnail>
         <img [src]="cocktail.strDrinkThumb" />
-      </ion-thumbnail></label>
+      </ion-thumbnail>
       <ion-label class="drinkLabel">{{ cocktail.strDrink }}</ion-label>
       <ion-button (click)="drunkDrink()" shape="round">
-        drink
+        Click me
       </ion-button>
     </ion-item>
   </ion-list>
