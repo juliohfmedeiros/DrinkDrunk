@@ -35,7 +35,7 @@ export class HomePage implements OnInit, OnDestroy {
         this.cocktailsService.setCocktails(this.cocktails);
       }
     );
-    this.cocktailsService.watchPosition();
+    this.cocktailsService.getCurrentPosition();
   }
 
   public ngOnDestroy() : void {

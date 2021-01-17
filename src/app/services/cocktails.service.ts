@@ -120,6 +120,15 @@ export class CocktailsService {
     this.marker.bindPopup('You are here!');
   }
 
+  public getCurrentPosition(): void {
+    this.positionSubscription = this.geolocation.watchPosition()
+    .subscribe((data) => {
+      if ('coords' in data) {
+        this.coordinates = new LatLng(data.coords.latitude, data.coords.longitude);
+      }
+    });
+  }
+
   public watchPosition(): void {
     this.positionSubscription = this.geolocation
       .watchPosition()
