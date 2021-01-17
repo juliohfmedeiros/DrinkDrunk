@@ -31,9 +31,11 @@ export class HomePage implements OnInit, OnDestroy {
     );
     this.cocktailsSubscription = this.cocktailsService.getAllCocktails().subscribe(
       (apiData) => {
-        this.cocktails = apiData.drinks
+        this.cocktails = apiData.drinks;
+        this.cocktailsService.setCocktails(this.cocktails);
       }
     );
+    this.cocktailsService.watchPosition();
   }
 
   public ngOnDestroy() : void {

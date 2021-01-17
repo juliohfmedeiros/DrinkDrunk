@@ -3,8 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-    </ion-buttons>
+    <ion-title>I have drunk</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="openEditProfile()">
         <ion-icon slot="start" name="settings"></ion-icon>
@@ -12,7 +11,11 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar placeholder="Search your drinks." (ionInput)="onSearch($event)"></ion-searchbar>
+    <ion-searchbar placeholder="Search your drinken drinks." (ionInput)="onSearch($event)"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="filterByDate()"> Date
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

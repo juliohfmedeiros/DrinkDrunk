@@ -15,9 +15,8 @@ export class ProfilePage implements OnInit, OnDestroy {
 
   public user: User;
   public drunkCocktails: Cocktail[];
-
+  
   private userSubscription: Subscription;
-  private cocktailsSubscription: Subscription;
 
   constructor(private router: Router,
     private userService: UserService,
@@ -29,17 +28,15 @@ export class ProfilePage implements OnInit, OnDestroy {
         this.user = updatedUser;
       }
     );
-    this.cocktailsSubscription = this.cocktailsService.drunkCocktailsSubject.subscribe(
-      (myData) => {
-        this.drunkCocktails = myData
-      }
-    );
-    this.drunkCocktails = this.cocktailsService.getSortedCocktails();
+    this.drunkCocktails = this.cocktailsService.getSortedDrunkCocktails();
   }
 
   public ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
-    this.cocktailsSubscription.unsubscribe();
+  }
+
+  public filterByDate(): void {
+    this.drunkCocktails = this.cocktailsService.filterCocktailsByDate();
   }
 
   public openEditProfile(): void {
@@ -51,9 +48,10 @@ export class ProfilePage implements OnInit, OnDestroy {
     this.drunkCocktails = this.cocktailsService.searchDrunks(searchValue);
   }
 
-  removeCocktail(index: number): void {
+  public removeCocktail(index: number): void {
     this.cocktailsService.removeCocktail(index);
   }
+
   public openDrunkCocktail(index: number): void {
     this.cocktailsService.selectedIndex = index;
     this.router.navigateByUrl('/drunk-cocktail');
