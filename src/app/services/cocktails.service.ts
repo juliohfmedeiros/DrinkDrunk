@@ -56,19 +56,23 @@ export class CocktailsService {
     );
   }
 
-  public filterCocktailsByDate(): Cocktail[] {
-    return [...this.drunkCocktails].sort((cocktail1, cocktail2) => cocktail1.date > cocktail2.date? 0:1);
+  public filterCocktailsByDateDesc(): Cocktail[] {
+    return [...this.drunkCocktails].sort((cocktail1, cocktail2) => cocktail1.date < cocktail2.date? 1:-1);
+  }
+
+  public filterCocktailsByDateAsc(): Cocktail[] {
+    return [...this.drunkCocktails].sort((cocktail1, cocktail2) => cocktail1.date > cocktail2.date? 1:-1);
   }
 
   public getDrunkCocktail(): Cocktail {
     return this.drunkCocktails[this.selectedIndex];
   }
 
-
   public addDrunkCocktail(newDrunkCocktail: Cocktail): void {
-    newDrunkCocktail.date = new Date();
-    newDrunkCocktail.local = this.coordinates;
-    this.drunkCocktails.push(newDrunkCocktail);
+    let drunkCocktail = {...newDrunkCocktail};
+    drunkCocktail.date = new Date();
+    drunkCocktail.local = this.coordinates;
+    this.drunkCocktails.push(drunkCocktail);
     localStorage.setItem(
       this.localStorageDrunkCocktailsKey,
       JSON.stringify(this.drunkCocktails)

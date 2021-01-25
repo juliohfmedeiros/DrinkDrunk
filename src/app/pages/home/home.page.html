@@ -1,34 +1,38 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-label class="drinkLabel">    
-      <ion-thumbnail>
-        <img  id="logo" src="assets/icon/favicon.png" />
-      </ion-thumbnail>
-    </ion-label>
 
-    <ion-buttons slot="end">
-      <ion-label class="drinkLabel">{{ user.name }}</ion-label>
-      <ion-button class="profile" (click)="openProfile()">
-          <img [src]="user.photo" />
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-  <ion-toolbar>
+  <ion-toolbar style="--background: #1b0909;"> 
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
+      <ion-thumbnail>
+        <img  style="border-radius: 50%; margin-left: 12px;" src="assets/icon/favicon.png" />
+      </ion-thumbnail>
+      <div style="margin-right: 12px; padding: 0;">
+        <button class="profile"(click)="openProfile()" style="display: flex; background-color: transparent; align-items: center; outline: transparent;">
+          <p style="font-size: 18px; margin-right: 8px;"><b>{{ user.name }}</b></p>
+          <img [src]="user.photo"  style="width: 42px; height: 42px; border-radius: 50%;"/>
+        </button>
+        <p style="text-align: end; font-size: 12px; margin: 0; padding: 0;">on Drinkdrunk</p>
+      </div>
+    </div>
     <ion-searchbar placeholder="Search drinks." (ionInput)="onSearch($event)"></ion-searchbar>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <ion-list lines="none">
+  <ion-list lines="full">
     <ion-item *ngFor="let cocktail of cocktails">
-      <ion-thumbnail>
-        <img [src]="cocktail.strDrinkThumb" />
-      </ion-thumbnail>
-      <ion-label class="drinkLabel">{{ cocktail.strDrink }}</ion-label> 
-      <ion-button  (click)="drunkDrink(cocktail)" shape="round">
-      to drink
-      </ion-button>
+      <div style="display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 5px;">
+        <div style="display: flex; align-items: center;">
+          <ion-thumbnail>
+            <img [src]="cocktail.strDrinkThumb"/>
+          </ion-thumbnail>
+          <p style="font-size: 14px; font-weight: bolder; margin-left: px;">{{ cocktail.strDrink }}</p>
+        </div> 
+        <ion-button (click)="drunkDrink(cocktail)" style="--background: #1b0909;" shape="round">
+        to drink
+        </ion-button>
+      </div>
     </ion-item>
   </ion-list>
   

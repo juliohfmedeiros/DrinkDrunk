@@ -1,34 +1,42 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>I have drunk</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="openEditProfile()">
-        <ion-icon slot="start" name="settings"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+
+  <ion-toolbar style="--background: #1b0909;">
+    <div style="display: flex; justify-content: space-between; align-items: top; margin-top: 12px;">
+      <ion-buttons slot="start">
+        <ion-back-button  style="--background: #1b0909;"></ion-back-button>
+      </ion-buttons>
+      <ion-title style="position: relative;">I have drunk</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="openEditProfile()">
+          <ion-icon  slot="start" name="settings"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <ion-searchbar placeholder="Search your drinken drinks." (ionInput)="onSearch($event)"></ion-searchbar>
+      <ion-buttons slot="end">
+        <ion-button (click)="filterByDate()"> Date <ion-icon slot="end" [name]="toShowIcon"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
   </ion-toolbar>
-  <ion-toolbar>
-    <ion-searchbar placeholder="Search your drinken drinks." (ionInput)="onSearch($event)"></ion-searchbar>
-    <ion-buttons slot="end">
-      <ion-button (click)="filterByDate()"> Date
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+  
 </ion-header>
 
 <ion-content>
-  <ion-list lines="none">
+  <ion-list lines="full">
     <ion-item (click)="openDrunkCocktail(i)" *ngFor="let cocktail of drunkCocktails; index as i">
-      <ion-thumbnail>
-        <img [src]="cocktail.strDrinkThumb" />
-      </ion-thumbnail>
-      <ion-label class="drinkLabel">{{ cocktail.strDrink }}</ion-label>
-      <ion-button (click)="removeCocktail(i)">
-        <ion-icon slot="icon-only" name="trash"></ion-icon>
-      </ion-button> 
+      <div style="display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 5px;">
+        <div style="display: flex; align-items: center;">
+          <ion-thumbnail>
+            <img [src]="cocktail.strDrinkThumb"/>
+          </ion-thumbnail>
+          <p style="font-size: 14px; font-weight: bolder; margin-left: 6px;">{{ cocktail.strDrink }}</p>
+        </div> 
+        <ion-button (click)="removeCocktail(i)" style="--background: #1b0909; font-weight: bold;" >
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-button> 
+      </div>
     </ion-item>
   </ion-list>
 

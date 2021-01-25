@@ -17,10 +17,11 @@ export class ProfilePage implements OnInit, OnDestroy {
   public drunkCocktails: Cocktail[];
   
   private userSubscription: Subscription;
-
+  public toShowIcon: string = "arrow-down";
   constructor(private router: Router,
     private userService: UserService,
-    private cocktailsService: CocktailsService) {}
+    private cocktailsService: CocktailsService) {
+    }
 
   public ngOnInit(): void {
     this.userSubscription = this.userService.userSubject.subscribe(
@@ -36,7 +37,13 @@ export class ProfilePage implements OnInit, OnDestroy {
   }
 
   public filterByDate(): void {
-    this.drunkCocktails = this.cocktailsService.filterCocktailsByDate();
+    if (this.toShowIcon == 'arrow-down') {
+      this.toShowIcon = 'arrow-up';
+      this.drunkCocktails = this.cocktailsService.filterCocktailsByDateAsc();
+    }else{
+      this.toShowIcon = 'arrow-down';
+      this.drunkCocktails = this.cocktailsService.filterCocktailsByDateDesc();
+    }
   }
 
   public openEditProfile(): void {

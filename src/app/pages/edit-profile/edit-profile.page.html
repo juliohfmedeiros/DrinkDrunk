@@ -1,27 +1,22 @@
 <ion-header>
-  <ion-toolbar>
 
+  <ion-toolbar style="--background: #1b0909;">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Edit profile</ion-title>
-
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
   <ion-list lines="none">
 
     <ion-item>
-      <ion-label class="drinkLabel">
-        <ion-thumbnail>        
-          <ion-img 
-            [src]="user.photo">
-          </ion-img>
-        </ion-thumbnail>
-      </ion-label>
-      <ion-button (click)="takePicture()">
-        <ion-icon slot="start" name="camera"></ion-icon>
+      <ion-button (click)="takePicture()" style="--background: transparent; outline: transparent; height: 100%;">
+        <ion-img style="width: 300px; height: 300px; border-radius: 50%;"
+          [src]="user.photo">
+        </ion-img>
       </ion-button>
     </ion-item>
 
@@ -44,7 +39,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-button (click)="updateUser()">
+      <ion-button (click)="updateUser()" style="--background: #1b0909;">
         <ion-icon slot="start" name="save"></ion-icon>
       </ion-button>
     </ion-item>

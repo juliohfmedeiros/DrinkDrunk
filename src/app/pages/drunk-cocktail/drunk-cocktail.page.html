@@ -1,12 +1,16 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header [translucent]="true">
+  
+  <ion-toolbar style="--background: #1b0909;"> 
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>{{ drunkCocktail.strDrink }}</ion-title>
   </ion-toolbar>
+  
 </ion-header>
 
 <ion-content  [fullscreen]="true">
+
   <div id="map"></div>
+
 </ion-content>
