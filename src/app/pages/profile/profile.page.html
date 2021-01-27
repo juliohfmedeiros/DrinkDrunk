@@ -12,12 +12,9 @@
         </ion-button>
       </ion-buttons>
     </div>
-    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="display: flex;">
       <ion-searchbar placeholder="Search your drinken drinks." (ionInput)="onSearch($event)"></ion-searchbar>
-      <ion-buttons slot="end">
-        <ion-button (click)="filterByDate()"> Date <ion-icon slot="end" [name]="toShowIcon"></ion-icon>
-        </ion-button>
-      </ion-buttons>
+      <ion-button style="width: 45px; height: 35px;" (click)="filterByDate()">{{ toShowIcon }}</ion-button>
     </div>
   </ion-toolbar>
   

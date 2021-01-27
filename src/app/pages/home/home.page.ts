@@ -33,9 +33,9 @@ export class HomePage implements OnInit, OnDestroy {
       (apiData) => {
         this.cocktails = apiData.drinks;
         this.cocktailsService.setCocktails(this.cocktails);
+        this.cocktailsService.getCurrentPosition();
       }
     );
-    this.cocktailsService.getCurrentPosition();
   }
 
   public ngOnDestroy() : void {

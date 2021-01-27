@@ -121,16 +121,7 @@ export class CocktailsService {
         shadowUrl: 'leaflet/marker-shadow.png',
       }),
     }).addTo(this.map);
-    this.marker.bindPopup('You are here!');
-  }
-
-  public getCurrentPosition(): void {
-    this.positionSubscription = this.geolocation.watchPosition()
-    .subscribe((data) => {
-      if ('coords' in data) {
-        this.coordinates = new LatLng(data.coords.latitude, data.coords.longitude);
-      }
-    });
+    this.marker.bindPopup('cocktail.date');
   }
 
   public watchPosition(): void {
@@ -140,7 +131,11 @@ export class CocktailsService {
         if ('coords' in data) {
           this.updateMap(data.coords.latitude, data.coords.longitude);
         }
-      });
+    });
+  }
+
+  public getCurrentPosition(): void {
+    this.geolocation.getCurrentPosition();
   }
 
   private updateMap(latitude: number, longitude: number): void {

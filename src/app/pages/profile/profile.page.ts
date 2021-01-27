@@ -17,7 +17,7 @@ export class ProfilePage implements OnInit, OnDestroy {
   public drunkCocktails: Cocktail[];
   
   private userSubscription: Subscription;
-  public toShowIcon: string = "arrow-down";
+  public toShowIcon: string = "new";
   constructor(private router: Router,
     private userService: UserService,
     private cocktailsService: CocktailsService) {
@@ -37,11 +37,11 @@ export class ProfilePage implements OnInit, OnDestroy {
   }
 
   public filterByDate(): void {
-    if (this.toShowIcon == 'arrow-down') {
-      this.toShowIcon = 'arrow-up';
+    if (this.toShowIcon == 'new') {
+      this.toShowIcon = 'old';
       this.drunkCocktails = this.cocktailsService.filterCocktailsByDateAsc();
     }else{
-      this.toShowIcon = 'arrow-down';
+      this.toShowIcon = 'new';
       this.drunkCocktails = this.cocktailsService.filterCocktailsByDateDesc();
     }
   }
