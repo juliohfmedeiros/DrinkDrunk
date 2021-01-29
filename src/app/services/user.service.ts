@@ -15,10 +15,9 @@ export class UserService {
   public userSubject: BehaviorSubject<User>;
 
   constructor(private cameraPlugin: Camera) {
-    let user: User = new User('José Pequeno', new Date(2020, 1, 1, 0, 0, 0, 0), 'assets/avatar.png');
     this.user = 
     localStorage.getItem(this.localstorageUserKey) === null
-    ?  user
+    ?  new User('José Pequeno', new Date(2000, 0, 1), 'assets/avatar.png')
     : JSON.parse(localStorage.getItem(this.localstorageUserKey));
     this.userSubject = new BehaviorSubject<User>(this.user);
 

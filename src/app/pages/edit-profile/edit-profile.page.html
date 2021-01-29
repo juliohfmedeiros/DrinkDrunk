@@ -17,7 +17,6 @@
         <ion-img [src]="user.photo"></ion-img>
       </ion-button>
     </ion-item>
-
     <ion-item>
         <ion-input style="text-align: center; margin-left: -6px; font-weight: bold; font-size: 18px;" [(ngModel)]="user.name" type="text"></ion-input>
     </ion-item>
@@ -25,7 +24,7 @@
     <ion-item>
       <div style="width:100%; display: flex; flex-direction: column;">        
         <label style="width:100%; text-align:center; margin-left: -6px; font-size: 12px;">born at</label>
-        <ion-datetime style="width:100%; text-align:center; margin-left: -12px; font-size: 14px;" [(ngModel)]="user.birthday"></ion-datetime>
+        <ion-datetime style="width:100%; text-align:center; margin-left: -12px; font-size: 14px;" displayFormat="D MMMM of YYYY" [(ngModel)]="date"></ion-datetime>
       </div>
     </ion-item>
 

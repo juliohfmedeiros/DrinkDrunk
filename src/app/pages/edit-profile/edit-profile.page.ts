@@ -14,6 +14,7 @@ export class EditProfilePage implements OnInit, OnDestroy {
   private userSubscription: Subscription;
 
   public user: User;
+  public date: string;
 
   constructor(private userService: UserService,
     private navController: NavController,
@@ -24,6 +25,7 @@ export class EditProfilePage implements OnInit, OnDestroy {
     this.userSubscription = this.userService.userSubject.subscribe(
       (updatedUser) => {
         this.user = updatedUser;
+        this.date = this.user.birthday.toISOString();
       }
     );
   }
@@ -33,6 +35,7 @@ export class EditProfilePage implements OnInit, OnDestroy {
   }
 
   public updateUser(): void {
+    this.user.birthday = new Date(this.date);
     this.userService.editUser(this.user);
     this.navController.pop();
   }
