@@ -35,7 +35,7 @@ export class EditProfilePage implements OnInit, OnDestroy {
   }
 
   public updateUser(): void {
-    this.userService.setBirthday(this.date);
+    this.user.birthday = new Date(this.date);
     this.userService.editUser(this.user);
     this.navController.pop();
   }
