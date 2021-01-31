@@ -38,6 +38,7 @@ export class ProfilePage implements OnInit, OnDestroy {
 
   public getSortedDrunks() {
     this.toShowIcon = 'caret-down-outline';
+    this.drunkCocktails = this.cocktailsService.filterCocktailsByDateDesc();
     this.drunkCocktails = this.cocktailsService.getSortedDrunkCocktails();
   }
   public filterByDate(): void {

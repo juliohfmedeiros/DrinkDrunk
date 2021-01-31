@@ -39,7 +39,7 @@ export class CocktailsService {
   public setCocktails(cocktails: Cocktail[]): void {
     this.cocktails = cocktails;
   }
-  public setCoordinates(local: LatLng) {
+  public setCoordinates(local: LatLng): void {
     this.coordinates = local;
   }
   public getDrunkCocktails(): Cocktail[] {

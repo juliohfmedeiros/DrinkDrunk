@@ -2,20 +2,20 @@
 
   <ion-toolbar style="--background: #1b0909;">
     <div style="display: flex; justify-content: space-between; align-items: top; margin-top: 12px;">
-      <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
+      <ion-buttons slot="start" >
+        <ion-back-button style="color:white;"></ion-back-button>
       </ion-buttons>
-      <ion-title style="position: relative;">I have drunk</ion-title>
+      <ion-title style="color:white; position: relative;">I have drunk</ion-title>
       <ion-buttons slot="end">
         <ion-button (click)="openEditProfile()">
-          <ion-icon  slot="start" name="settings"></ion-icon>
+          <ion-icon style="color:white;" slot="start"name="settings"></ion-icon>
         </ion-button>
       </ion-buttons>
     </div>
     <div style="display: flex;">
       <ion-buttons slot="start">
-        <ion-button (click)="getSortedDrunks()"><ion-icon slot="start" name="refresh"></ion-icon></ion-button>
-        <ion-button (click)="filterByDate()"><ion-icon [name]="toShowIcon"></ion-icon></ion-button>
+        <ion-button style="color:white;"  (click)="getSortedDrunks()"><ion-icon slot="start" name="refresh"></ion-icon></ion-button>
+        <ion-button style="color:white;" (click)="filterByDate()"><ion-icon [name]="toShowIcon"></ion-icon></ion-button>
       </ion-buttons>
       <ion-searchbar placeholder="Search your drinken drinks." (ionInput)="onSearch($event)"></ion-searchbar>
     </div>

@@ -4,7 +4,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Edit profile</ion-title>
+    <ion-title style="color:white;">Edit profile</ion-title>
   </ion-toolbar>
 
 </ion-header>
@@ -14,8 +14,11 @@
 
     <ion-item>      
       <ion-button (click)="takePicture()" style="--background: transparent; outline: transparent; width:100%; height: 100%; margin-top:12px; margin-left:-6px; border-radius: 50%;"> 
-        <ion-img [src]="user.photo"></ion-img>
+        <ion-thumbnail  style="border-radius: 50%;">
+          <img [src]="user.photo"/>
+        </ion-thumbnail>
       </ion-button>
+
     </ion-item>
     <ion-item>
         <ion-input style="text-align: center; margin-left: -6px; font-weight: bold; font-size: 18px;" [(ngModel)]="user.name" type="text"></ion-input>

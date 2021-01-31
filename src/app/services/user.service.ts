@@ -9,6 +9,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 export class UserService {
   private user: User;
   private readonly localstorageUserKey = 'user';
+  date: Date;
 
   private cameraOptions: CameraOptions;
 
@@ -31,6 +32,9 @@ export class UserService {
 
   private streamUpdatedUser(): void {
     this.userSubject.next(this.user);
+  }
+  public setBirthday(date: string): void {
+    this.date = new Date(date);
   }
 
   private saveUser(): void {
