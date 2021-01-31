@@ -13,7 +13,7 @@
   <ion-list lines="none">
 
     <ion-item>      
-      <ion-button (click)="takePicture()" style="--background: transparent; outline: transparent; width:100%; height: 100%; margin-top:12px; margin-left:-6px;"> 
+      <ion-button (click)="takePicture()" style="--background: transparent; outline: transparent; width:100%; height: 100%; margin-top:12px; margin-left:-6px; border-radius: 50%;"> 
         <ion-img [src]="user.photo"></ion-img>
       </ion-button>
     </ion-item>
@@ -21,14 +21,14 @@
         <ion-input style="text-align: center; margin-left: -6px; font-weight: bold; font-size: 18px;" [(ngModel)]="user.name" type="text"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item>  
       <div style="width:100%; display: flex; flex-direction: column;">        
         <label style="width:100%; text-align:center; margin-left: -6px; font-size: 12px;">born at</label>
         <ion-datetime style="width:100%; text-align:center; margin-left: -12px; font-size: 14px;" displayFormat="D MMMM of YYYY" [(ngModel)]="date"></ion-datetime>
       </div>
     </ion-item>
 
-    <ion-item>
+    <ion-item>  
       <ion-button (click)="updateUser()" style="--background: #1b0909; width: 100%; height: 40px; margin-left: -6px;">
         <ion-icon slot="start" name="save"></ion-icon>
       </ion-button>

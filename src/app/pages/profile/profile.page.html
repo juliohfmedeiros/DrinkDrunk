@@ -13,28 +13,38 @@
       </ion-buttons>
     </div>
     <div style="display: flex;">
+      <ion-buttons slot="start">
+        <ion-button (click)="getSortedDrunks()"><ion-icon slot="start" name="refresh"></ion-icon></ion-button>
+        <ion-button (click)="filterByDate()"><ion-icon [name]="toShowIcon"></ion-icon></ion-button>
+      </ion-buttons>
       <ion-searchbar placeholder="Search your drinken drinks." (ionInput)="onSearch($event)"></ion-searchbar>
-      <ion-button style="width: 45px; height: 35px;" (click)="filterByDate()">{{ toShowIcon }}</ion-button>
     </div>
   </ion-toolbar>
   
 </ion-header>
 
 <ion-content>
-  <ion-list lines="full">
-    <ion-item (click)="openDrunkCocktail(i)" *ngFor="let cocktail of drunkCocktails; index as i">
-      <div style="display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 5px;">
-        <div style="display: flex; align-items: center;">
-          <ion-thumbnail>
-            <img [src]="cocktail.strDrinkThumb"/>
-          </ion-thumbnail>
-          <p style="font-size: 14px; font-weight: bolder; margin-left: 6px;">{{ cocktail.strDrink }}</p>
-        </div> 
-        <ion-button (click)="removeCocktail(i)" style="--background: #1b0909; font-weight: bold;" >
+  <p style="width:100%; text-align: center;" *ngIf="drunkCocktails.length == 0; else eventsListBlock">
+    No events on my list.
+  </p>
+  <ng-template #eventsListBlock>
+    <ion-list lines="full">
+      <ion-item *ngFor="let cocktail of drunkCocktails; index as i">
+        <div style="display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 5px;">
+          <div style="display: flex; align-items: center;">
+            <ion-thumbnail>
+              <img [src]="cocktail.strDrinkThumb"/>
+            </ion-thumbnail>
+            <p style="font-size: 14px; margin-left: 6px;">{{ cocktail.strDrink }}</p>
+          </div> 
+        </div>
+        <ion-button (click)="openDrunkCocktail(i)" style="--background: #1b0909;" >
+          <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
+        </ion-button> 
+        <ion-button (click)="removeCocktail(i)" style="--background: #1b0909;" >
           <ion-icon slot="icon-only" name="trash"></ion-icon>
         </ion-button> 
-      </div>
-    </ion-item>
-  </ion-list>
-
+      </ion-item>
+    </ion-list>
+  </ng-template>
 </ion-content>

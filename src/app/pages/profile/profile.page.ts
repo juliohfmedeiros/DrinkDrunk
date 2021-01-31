@@ -17,7 +17,7 @@ export class ProfilePage implements OnInit, OnDestroy {
   public drunkCocktails: Cocktail[];
   
   private userSubscription: Subscription;
-  public toShowIcon: string = "new";
+  public toShowIcon: string = "caret-down-outline";
   constructor(private router: Router,
     private userService: UserService,
     private cocktailsService: CocktailsService) {
@@ -36,13 +36,17 @@ export class ProfilePage implements OnInit, OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
+  public getSortedDrunks() {
+    this.toShowIcon = 'caret-down-outline';
+    this.drunkCocktails = this.cocktailsService.getSortedDrunkCocktails();
+  }
   public filterByDate(): void {
-    if (this.toShowIcon == 'new') {
-      this.toShowIcon = 'old';
-      this.drunkCocktails = this.cocktailsService.filterCocktailsByDateAsc();
-    }else{
-      this.toShowIcon = 'new';
+    if (this.toShowIcon == 'caret-up-outline') {
+      this.toShowIcon = 'caret-down-outline';
       this.drunkCocktails = this.cocktailsService.filterCocktailsByDateDesc();
+    }else{
+      this.toShowIcon = 'caret-up-outline';
+      this.drunkCocktails = this.cocktailsService.filterCocktailsByDateAsc();
     }
   }
 
@@ -57,6 +61,7 @@ export class ProfilePage implements OnInit, OnDestroy {
 
   public removeCocktail(index: number): void {
     this.cocktailsService.removeCocktail(index);
+    this.drunkCocktails = this.cocktailsService.getSortedDrunkCocktails();
   }
 
   public openDrunkCocktail(index: number): void {
